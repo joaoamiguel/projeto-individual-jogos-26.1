@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
 {
-    public GameObject coin;
+    public GameObject food;
 
-    public void SpawnCoin()
+    public void SpawnFood()
     {
         float spawnPointX = Random.Range(-6, 8);
         float spawnPointY = Random.Range(-4, 4);
 
         Vector2 spawnPosition = new Vector2(spawnPointX, spawnPointY);
         
-        Instantiate(coin, spawnPosition, Quaternion.identity);
+        Instantiate(food, spawnPosition, Quaternion.identity);
     }
 }

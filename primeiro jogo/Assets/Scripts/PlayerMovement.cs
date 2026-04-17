@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
             audio.Play();
             GameController.Collect();
             SpawnerController spawner = FindObjectOfType<SpawnerController>();
-            spawner.SpawnCoin();
+            spawner.SpawnFood();
             
             Destroy(other.gameObject);
         }

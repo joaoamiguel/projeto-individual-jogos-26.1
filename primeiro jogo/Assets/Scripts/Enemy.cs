@@ -2,30 +2,31 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    
     private Rigidbody2D enemy;
     private GameObject player;
+    private Animator animator;
 
     [SerializeField]
     private float speed = 1.5f;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private Vector2 movement;
+
     void Start()
     {
-        player =  GameObject.FindGameObjectWithTag("Player");
-        enemy =  GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        Swarm();
-    }
+        Vector2 direction = (player.transform.position - transform.position).normalized;
 
-    private void Swarm()
-    {
-        transform.position = Vector2.MoveTowards(transform.position,
-                                            player.transform.position,
-                                        speed * Time.deltaTime);
+        movement = direction;
+
+        enemy.MovePosition(enemy.position + direction * speed * Time.fixedDeltaTime);
+
+        animator.SetFloat("InputX", movement.x);
+        animator.SetFloat("InputY", movement.y);
     }
 }
